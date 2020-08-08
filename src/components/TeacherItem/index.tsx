@@ -8,7 +8,20 @@ import whatsappIcon from '../../assets/images/icons/whatsapp.png'
 
 import styles from './styles';
 
-function TeacherItem() {
+export interface Teacher {
+  id: number;
+  avatar: string;
+  bio: string;
+  cost: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ( {teacher} ) => {
 
   return (
     <View style={styles.container} >
@@ -16,22 +29,20 @@ function TeacherItem() {
         <Image style={styles.avatar} source={{ uri: 'https://radiopeaobrasil.com.br/wp-content/uploads/2019/03/albert-einstein-head.jpg' }}/>
 
         <View style={styles.profileInfo}>
-          <Text style={styles.name} > Albert Einstein </Text>
-          <Text style={styles.subject} > Física </Text>
+          <Text style={styles.name} > {teacher.name} </Text>
+          <Text style={styles.subject} > {teacher.subject} </Text>
         </View>
       </View>
 
       <Text style={styles.bio}> 
-        Físico teórico alemão que desenvolveu a teoria da relatividade geral.
-        {'\n'}{'\n'}
-        Laureado com o Prêmio Nobel de Física de 1921.
+        {teacher.bio}
       </Text>
 
       <View style={styles.footer}>
         <Text style={styles.price}>
           Preço/Hora {'   '}
           <Text style={styles.priceValue}>
-            U$ 3.000
+            {teacher.cost}
           </Text>
         </Text>
 
